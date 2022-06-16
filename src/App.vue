@@ -1,21 +1,84 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div>
+    <div class="user-decks">
+      <!-- Opponent Cards -->
+      <MainCard
+        :v-if="cards"
+        v-for="card in opponentCards"
+        :key="card"
+        :cardtype="card"
+      ></MainCard>
+    </div>
+    <div>
+      <div>
+        <!-- Stack -->
+        <MainCard
+          :hidden="true"
+          :showCount="cards.length"
+          @click="drawCard()"
+        ></MainCard>
+      </div>
+      <div>
+        <!-- Specialcard pool -->
+      </div>
+    </div>
+    <div class="user-decks">
+      <div>
+        <!-- User Cards -->
+        <MainCard
+          :v-if="cards"
+          v-for="card in userCards"
+          :key="card"
+          :cardtype="card"
+        ></MainCard>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<script lang="ts">
+  import { defineComponent } from "vue";
+
+  import MainCard from "./components/Card.vue";
+  import { CardManager } from "./CardManager";
+  import { Card } from "./CardTypes";
+
+  export default defineComponent({
+    name: "App",
+    components: {
+      MainCard,
+    },
+    methods: {
+      drawCard() {
+        const card = this.cards.pop();
+
+        if (typeof card !== "undefined") {
+          this.userCards.push(card);
+        }
+      },
+    },
+    data() {
+      const manager = new CardManager();
+      const cardlist = CardManager.shuffle(manager.createDeck());
+      return {
+        cards: cardlist,
+        userCards: [] as Card[],
+        opponentCards: [] as Card[],
+      };
+    },
+  });
+</script>
+
+<style lang="scss">
+  html {
+    font-size: 10px;
+  }
+
+  .user-decks {
+    & > div {
+      display: flex;
+    }
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
 </style>
