@@ -1,6 +1,7 @@
 <template>
-  <div class="card-container" :class="color">
-    <div class="card-border">
+  <div class="card-wrapper">
+    <div class="card-container" :class="color">
+      <!--<div class="card-border">-->
       <div class="card-main">
         <div class="card-content" v-if="!hidden">
           <div class="card-icon">
@@ -13,7 +14,7 @@
           <NumberCardBody
             v-if="type == 'NumberCard'"
             :icon="colorIcon"
-            :count="cardtype.value"
+            :count="cardValue"
           ></NumberCardBody>
           <div class="card-icon">
             {{ icon }}
@@ -27,6 +28,7 @@
           {{ showCount }}
         </div>
       </div>
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -60,6 +62,9 @@
       },
     },
     computed: {
+      cardValue() {
+        return (this.cardtype as NumberedCard).value;
+      },
       type() {
         return this.cardtype.type;
       },
@@ -84,7 +89,7 @@
           }
         }
 
-        return false;
+        return "NA";
       },
       color() {
         if (this.hidden) {
@@ -99,101 +104,4 @@
   });
 </script>
 
-<style lang="scss">
-  $size: 12rem;
-  $border-radius: 0.5rem;
-
-  .card-container {
-    &,
-    * {
-      box-sizing: border-box;
-    }
-
-    width: $size;
-    border: 1px solid #000;
-    padding: 4px;
-    position: relative;
-
-    border-radius: $border-radius;
-
-    &.card-hidden {
-      .card-border {
-        background-color: #000;
-        color: #fff;
-        font-size: 6rem;
-        text-align: center;
-      }
-    }
-
-    &.card-color-heart,
-    &.card-color-tiles {
-      &,
-      * {
-        color: #f00;
-      }
-    }
-
-    &.card-color-clovers,
-    &.card-color-pikes {
-      &,
-      * {
-        color: #000;
-      }
-    }
-
-    .card-border {
-      border-radius: $border-radius;
-
-      width: 100%;
-      padding-top: 154.23%;
-
-      border: 1px solid #000;
-    }
-
-    .card-main {
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      padding: 4px;
-
-      position: absolute;
-    }
-
-    .card-content {
-      position: relative;
-      width: 100%;
-      height: 100%;
-
-      .card-icon {
-        padding: 0.1rem;
-        line-height: 0.875;
-        font-size: 2rem;
-        position: absolute;
-        border: 1px solid #000;
-        background-color: #fff;
-
-        border-left-color: #0000;
-        border-top-color: #0000;
-
-        border-bottom-right-radius: $border-radius;
-        z-index: 2;
-
-        $offset: -0.25px;
-
-        top: $offset;
-        left: $offset;
-
-        & ~ .card-icon {
-          transform: rotate(180deg);
-
-          top: unset;
-          left: unset;
-          bottom: $offset;
-          right: $offset;
-        }
-      }
-    }
-  }
-</style>
+<style lang="scss"></style>

@@ -23,27 +23,4 @@
   });
 </script>
 
-<style lang="scss">
-  .card-body-numbercard {
-    & > div {
-      flex-grow: 0;
-      height: auto;
-      width: auto;
-    }
-
-    align-items: center;
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    padding-left: 1.875rem;
-    padding-right: 1.875rem;
-
-    display: flex;
-
-    font-size: 3rem;
-
-    height: 100%;
-    width: 100%;
-  }
-</style>
+<style lang="scss"></style>

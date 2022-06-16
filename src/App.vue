@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="user-decks">
+    <div class="user-deck">
       <!-- Opponent Cards -->
       <MainCard
-        :v-if="cards"
-        v-for="card in opponentCards"
-        :key="card"
+        v-for="(card, index) in opponentCards"
+        :key="index"
         :cardtype="card"
+        :hidden="index == 0"
       ></MainCard>
     </div>
     <div>
@@ -22,16 +22,13 @@
         <!-- Specialcard pool -->
       </div>
     </div>
-    <div class="user-decks">
-      <div>
-        <!-- User Cards -->
-        <MainCard
-          :v-if="cards"
-          v-for="card in userCards"
-          :key="card"
-          :cardtype="card"
-        ></MainCard>
-      </div>
+    <div class="user-deck">
+      <!-- User Cards -->
+      <MainCard
+        v-for="(card, index) in userCards"
+        :key="index"
+        :cardtype="card"
+      ></MainCard>
     </div>
   </div>
 </template>
@@ -54,6 +51,7 @@
 
         if (typeof card !== "undefined") {
           this.userCards.push(card);
+          this.opponentCards.push(card);
         }
       },
     },
@@ -69,16 +67,4 @@
   });
 </script>
 
-<style lang="scss">
-  html {
-    font-size: 10px;
-  }
-
-  .user-decks {
-    & > div {
-      display: flex;
-    }
-    overflow-x: scroll;
-    overflow-y: hidden;
-  }
-</style>
+<style lang="scss"></style>
