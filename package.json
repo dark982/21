@@ -11,12 +11,14 @@
     "bootstrap": "^5.2.0-beta1",
     "firebase": "^9.8.3",
     "simple-peer": "^9.11.1",
+    "uuid": "^8.3.2",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/bootstrap": "^5.1.12",
+    "@types/uuid": "^8.3.4",
     "@vitejs/plugin-vue": "^2.3.3",
     "autoprefixer": "^10.4.7",
     "path": "^0.12.7",

@@ -1,8 +1,11 @@
 <template>
   <div>
-    {{ lobbyid }}
+    {{ lobbyid }}<br />
 
-    <button v-if="startgamebutton">Start</button>
+    <span>{{ link }}</span
+    ><br />
+    <button v-if="startgamebutton" @click="startGame">Start</button>
+    <template v-else-if="!isHost"> Waiting for peer to start game </template>
   </div>
 </template>
 
@@ -13,17 +16,33 @@
   export default defineComponent({
     components: {},
     computed: {
-      lobbyid() {
+      lobbyid(): string {
         return store.getters.lobby;
       },
 
+      isHost() {
+        return store.getters.host;
+      },
+
       startgamebutton() {
-        return (
-          store.getters["connection/established"] && store.getters.lobbycreator
-        );
+        return store.getters["connection/established"] && store.getters.host;
+      },
+
+      link() {
+        let url =
+          window.location.protocol +
+          "//" +
+          window.location.host +
+          import.meta.env.BASE_URL;
+
+        return url + "?lobby=" + store.getters.lobby;
       },
     },
-    methods: {},
+    methods: {
+      startGame() {
+        store.getters.gameservice.startGame();
+      },
+    },
     data() {
       return {};
     },

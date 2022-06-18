@@ -1,5 +1,5 @@
 <template>
-  <div class="card-wrapper">
+  <div class="card-wrapper col-auto">
     <div class="card-container" :class="color">
       <!--<div class="card-border">-->
       <div class="card-main">

@@ -1,5 +1,5 @@
 import { Card, CardColor, ImageCard, NumberCard } from "./CardTypes";
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 export class CardManager {
@@ -24,7 +24,7 @@ export class CardManager {
                 let item: NumberCard = {
                     type: "NumberCard",
                     value: i,
-                    color: color
+                    color: color,
                 };
 
                 stack.push(item);

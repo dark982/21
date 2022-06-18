@@ -4,6 +4,7 @@ import Connection from './components/Lobby.vue'
 import Welcome from './components/Welcome.vue'
 import Lobby from './components/Lobby.vue'
 import Game from './components/Game.vue'
+import GameOver from './components/GameOver.vue'
 
 const routes = [
     {
@@ -20,6 +21,11 @@ const routes = [
         path: "/game",
         name: "game",
         component: Game
+    },
+    {
+        path: "/gameover",
+        name: "gameover",
+        component: GameOver
     },
 ];
 

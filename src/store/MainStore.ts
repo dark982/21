@@ -1,12 +1,15 @@
 import { createStore } from 'vuex'
+import { GameService } from '../services/GameService';
 import ConnectionStore from './ConnectionStore'
+import GameStore from './GameStore'
 
 // Create a new store instance.
 const store = createStore({
     state() {
         return {
             lobby: null as null | string,
-            lobbycreator: false,
+            host: false,
+            gameservice: null as null | GameService
         }
     },
 
@@ -14,8 +17,11 @@ const store = createStore({
         lobby(state, val) {
             state.lobby = val;
         },
-        lobbycreator(state, val) {
-            state.lobbycreator = val;
+        host(state, val) {
+            state.host = val;
+        },
+        gameservice(state, service) {
+            state.gameservice = service
         }
     },
 
@@ -23,8 +29,11 @@ const store = createStore({
         lobby(state) {
             return state.lobby
         },
-        lobbycreator(state) {
-            return state.lobbycreator
+        host(state) {
+            return state.host
+        },
+        gameservice(state, service) {
+            return state.gameservice
         }
     },
 
@@ -32,7 +41,8 @@ const store = createStore({
     },
 
     modules: {
-        connection: ConnectionStore
+        connection: ConnectionStore,
+        gamestore: GameStore,
     }
 })
 

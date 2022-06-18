@@ -27,7 +27,7 @@
     computed: {},
     methods: {
       createLobby() {
-        store.commit("lobbycreator", true);
+        store.commit("host", true);
         GameService.CreateRoom().then(() => {
           console.log("go lobby");
           this.$router.push({ name: "lobby" });
@@ -42,8 +42,11 @@
       },
     },
     data() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
       return {
-        room: null,
+        room: urlParams.has("lobby") ? urlParams.get("lobby") : null,
       };
     },
   });

@@ -23,3 +23,10 @@ export interface ImageCard extends NumberedCard {
     type: "ImageCard";
     icon: string;
 }
+
+export interface SpecialCard extends Card {
+    type: "ImageCard";
+    icon: string;
+    id: string;
+}
+
