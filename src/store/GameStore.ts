@@ -113,6 +113,10 @@ export default {
             state.clientSpecialCards = [];
             state.clientCards = [];
             state.hostCards = [];
+
+            state.winningNumber = 21;
+            state.staycounter = 0;
+            state.winner = "";
         },
 
         setState(state, data) {

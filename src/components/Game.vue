@@ -3,6 +3,15 @@
     <div class="row">
       <!--Opponent-->
       <Card
+        v-for="(card, index) in opponentSpecialCards"
+        :key="index"
+        :cardtype="card"
+        :hidden="true"
+      ></Card>
+    </div>
+    <div class="row">
+      <!--Opponent-->
+      <Card
         v-for="(card, index) in opponentCards"
         :key="index"
         :cardtype="card"
@@ -21,6 +30,14 @@
       <!--Your-->
       <Card
         v-for="(card, index) in yourCards"
+        :key="index"
+        :cardtype="card"
+      ></Card>
+    </div>
+    <div class="row">
+      <!--Your-->
+      <Card
+        v-for="(card, index) in yourSpecialCards"
         :key="index"
         :cardtype="card"
       ></Card>
@@ -53,6 +70,20 @@
           return store.getters["gamestore/clientCards"];
         } else {
           return store.getters["gamestore/hostCards"];
+        }
+      },
+      opponentSpecialCards() {
+        if (store.getters.host) {
+          return store.getters["gamestore/clientSpecialCards"];
+        } else {
+          return store.getters["gamestore/hostSpecialCards"];
+        }
+      },
+      yourSpecialCards() {
+        if (!store.getters.host) {
+          return store.getters["gamestore/clientSpecialCards"];
+        } else {
+          return store.getters["gamestore/hostSpecialCards"];
         }
       },
     },

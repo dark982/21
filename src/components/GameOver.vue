@@ -20,11 +20,12 @@
       },
 
       startgamebutton() {
-        return store.getters["connection/established"] && store.getters.host;
+        return store.getters.host;
       },
     },
     methods: {
       startGame() {
+        this.$router.replace({ name: "game" });
         store.getters.gameservice.startGame();
       },
     },

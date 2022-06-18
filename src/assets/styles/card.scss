@@ -1,0 +1,121 @@
+.card-wrapper {
+  --card-scale: 16px;
+
+  font-size: var(--card-scale);
+
+  $border-radius: 0.4em;
+  display: inline-block;
+
+  .card-container {
+    $card-width: 8em;
+    width: $card-width;
+    height: calc(1.5423 * $card-width);
+
+    border: 1px solid #000;
+
+    position: relative;
+
+    &.card-color-heart,
+    &.card-color-tiles {
+      &,
+      * {
+        color: #f00;
+      }
+    }
+
+    &.card-color-clovers,
+    &.card-color-pikes {
+      &,
+      * {
+        color: #000;
+      }
+    }
+
+    border-radius: $border-radius;
+
+    .card-main {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      margin: 0.25em;
+
+      border: 1px solid #000;
+
+      border-radius: $border-radius;
+
+      position: absolute;
+
+      .card-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .card-body-numbercard {
+          & > div {
+            flex-grow: 0;
+            height: auto;
+            width: auto;
+          }
+
+          align-items: center;
+          flex-wrap: wrap;
+
+          line-height: 1em;
+
+          justify-content: center;
+
+          padding-left: 0.3em;
+          padding-right: 0.3em;
+
+          display: flex;
+
+          font-size: 2.5em;
+
+          height: 100%;
+          width: 100%;
+        }
+
+        .card-icon {
+          padding: 0.1em;
+          line-height: 0.875em;
+          font-size: 1em;
+          position: absolute;
+          border: 1px solid #000;
+          background-color: #fff;
+
+          border-left-color: #0000;
+          border-top-color: #0000;
+
+          border-bottom-right-radius: $border-radius;
+          z-index: 2;
+
+          $offset: -1px;
+
+          top: $offset;
+          left: $offset;
+
+          & ~ .card-icon {
+            transform: rotate(180deg);
+
+            top: unset;
+            left: unset;
+            bottom: $offset;
+            right: $offset;
+          }
+        }
+      }
+    }
+  }
+}
+
+.user-deck {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  & > div {
+    margin: 0.25em;
+  }
+}

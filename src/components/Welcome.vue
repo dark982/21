@@ -1,17 +1,27 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col d-flex">
-        <button class="btn btn-primary mx-auto" @click="createLobby()">
-          Create Lobby
+  <div style="display: flex; height: 100%; width: 100%">
+    <div style="margin: auto">
+      <div class="h1 mb-3">Welcome to 21</div>
+      <div class="text-center">
+        <template v-if="room">Either </template>
+        <button class="btn btn-success mx-auto btn-sm" @click="createLobby()">
+          Create
         </button>
+        a lobby
       </div>
-      <div class="col d-flex">
-        <input v-model="room" />
-        <button class="btn btn-primary mx-auto" @click="joinLobby()">
-          Join Lobby
-        </button>
-      </div>
+      <template v-if="room">
+        <div class="row text-center my-3">
+          <div class="col"><hr /></div>
+          <div class="col-auto">OR</div>
+          <div class="col"><hr /></div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-success mx-auto btn-sm" @click="joinLobby()">
+            Join
+          </button>
+          given Lobby
+        </div>
+      </template>
     </div>
   </div>
 </template>
